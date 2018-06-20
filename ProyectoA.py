@@ -35,7 +35,7 @@ while True:
 			osm = submenu()
 
 	if (omp == 2):
-
+		#
 
 	if (omp == 3):
 
