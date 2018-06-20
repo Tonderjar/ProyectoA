@@ -1,6 +1,6 @@
 import sys
 
-def menup() -> 'void'
+def menup() -> 'void':
 	print("1.- Componer")
 	print("2.- Escuchar Composición")
 	print("3.- Salir del programa")
