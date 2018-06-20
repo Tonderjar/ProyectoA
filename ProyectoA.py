@@ -1,7 +1,8 @@
 import sys
-def menup() -> int:
-	print("1.- Composicion")
-	print("2.- Escuchar Composicion")
+
+def menup() -> 'void'
+	print("1.- Composición")
+	print("2.- Escuchar Composición")
 	print("3.- Salir del programa")
 	omp = int(input("Seleccione una opcion: "))
 	return omp
