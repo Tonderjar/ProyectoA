@@ -9,14 +9,15 @@ def menup() -> 'void':
 	omp = int(input("Seleccione una opción: "))
 	return omp
 
-def Componer() -> int:
+def menup() -> int:
 	print("1.- Parte 1")
 	print("2.- Parte 2")
 	print("3.- Parte 3")
 	print("4.- Parte 4")
-	print("5.- Volver al menú principal")
-	omc = int(input("Seleccione una opción: "))
-	return omc
+	print("5.- Escuchar toda la composicion")
+	print("6.- Salir del programa")
+	omp = int(input("Seleccione una opción: "))
+	return omp
 
 def submenu() -> int:
 	print("1.- Cargar archivo")
@@ -32,28 +33,25 @@ def submenu() -> int:
 comp = ['', '', '', '']
 while True:
 	omp = menup() # Menu principal
-	if (omp == 1): # Componer
+	if (1 <= omc <= 4):
 		while True:
-			omc = Componer() # Menu de las partes
-			if (1 <= omc <= 4):
-				while True:
-					osm = submenu() # Submenu de las partes
-					if (osm==1): # Cargar archivo
-						comp[omc - 1] = converter.parse(input("Introduzca la ruta de su archivo entre '': "))
-						sp = midi.realtime.StreamPlayer(comp[omc - 1])
-						sp.play()
-					#elif (osm==2): # Generar arpegio
-					#	d
-					#elif (osm==3): # Transportar
-					#	d
-					#elif (osm==4): # Escuchar parte
-					#	s
-					#elif (osm==5): # Borrar parte
-					#	s
-					elif (osm==6): # Volver al menu anterior
-						break
-			elif (omc == 5):
+			osm = submenu() # Submenu de las partes
+			if (osm==1): # Cargar archivo
+				comp[omc - 1] = converter.parse(input("Introduzca la ruta de su archivo entre '': "))
+				sp = midi.realtime.StreamPlayer(comp[omc - 1])
+				sp.play()
+			#elif (osm==2): # Generar arpegio
+			#	d
+			#elif (osm==3): # Transportar
+			#	d
+			#elif (osm==4): # Escuchar parte
+			#	s
+			#elif (osm==5): # Borrar parte
+			#	s
+			elif (osm==6): # Volver al menu anterior
 				break
+	elif (omc == 5):
+		break
 		#if (omp == 2): #Escuchar composicion
 			#sp = midi.realtime.StreamPlayer(cancion) #Aqui en "cancion" va el nombre que le pongamos a la composicion
 			#sp.play()
