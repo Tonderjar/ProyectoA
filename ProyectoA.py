@@ -1,4 +1,6 @@
 import sys
+from pygame import *
+from music21 import *
 
 def menup() -> 'void':
 	print("1.- Componer")
@@ -23,33 +25,38 @@ def submenu() -> int:
 	print("4.- Escuchar parte")
 	print("5.- Borrar parte")
 	print("6.- Volver al menú anterior")
-	osm = int(input("Seleccione una opción"))
+	osm = int(input("Seleccione una opción: "))
 	return osm
 
 #main
+comp = ['', '', '', '']
 while True:
 	omp = menup() # Menu principal
 	if (omp == 1): # Componer
-		omc = Componer() # Menu de las partes
-		if (1 <= omc <= 4):
-			osm = submenu() # Submenu de las partes
-			if (osm==1): # Cargar archivo
-				archivo = open('archivo.txt','r') # Abre archivo en modo lectura
-			elif (osm==2): # Generar arpegio
-				d
-			elif (osm==3): # Transportar
-				d
-			elif (osm==4): # Escuchar parte
-				s
-			elif (osm==5): # Borrar parte
-				s
-			elif (osm==6): # Volver al menu anterior
-				a
-		elif (omc=5):
-			omp = menup()
-	#if (omp == 2): #Escuchar composicion
-		sp = midi.realtime.StreamPlayer(cancion) #Aqui en "cancion" va el nombre que le pongamos a la composicion
-		sp.play()
+		while True:
+			omc = Componer() # Menu de las partes
+			if (1 <= omc <= 4):
+				while True:
+					osm = submenu() # Submenu de las partes
+					if (osm==1): # Cargar archivo
+						comp[omc - 1] = converter.parse(input("Introduzca la ruta de su archivo entre '': "))
+						sp = midi.realtime.StreamPlayer(comp[omc - 1])
+						sp.play()
+					#elif (osm==2): # Generar arpegio
+					#	d
+					#elif (osm==3): # Transportar
+					#	d
+					#elif (osm==4): # Escuchar parte
+					#	s
+					#elif (osm==5): # Borrar parte
+					#	s
+					elif (osm==6): # Volver al menu anterior
+						break
+			elif (omc == 5):
+				break
+		#if (omp == 2): #Escuchar composicion
+			#sp = midi.realtime.StreamPlayer(cancion) #Aqui en "cancion" va el nombre que le pongamos a la composicion
+			#sp.play()
 
 	if (omp == 3):
 		#posible confirmacion
