@@ -4,7 +4,7 @@ def menup() -> 'void':
 	print("1.- Componer")
 	print("2.- Escuchar Composición")
 	print("3.- Salir del programa")
-	omp = int(input("Seleccione una opcion: "))
+	omp = int(input("Seleccione una opción: "))
 	return omp
 
 def Componer() -> int:
@@ -12,8 +12,8 @@ def Componer() -> int:
 	print("2.- Parte 2")
 	print("3.- Parte 3")
 	print("4.- Parte 4")
-	print("5.- Volver al menu principal")
-	omc = int(input("Seleccione una opcion: "))
+	print("5.- Volver al menú principal")
+	omc = int(input("Seleccione una opción: "))
 	return omc
 
 def submenu() -> int:
@@ -22,27 +22,35 @@ def submenu() -> int:
 	print("3.- Transportar")
 	print("4.- Escuchar parte")
 	print("5.- Borrar parte")
-	print("6.- Volver al menu anterior")
-	osm = int(input("Seleccione una opcion"))
+	print("6.- Volver al menú anterior")
+	osm = int(input("Seleccione una opción"))
 	return osm
 
 #main
 while True:
-	omp = menup()
-	if (omp == 1):
-		omc = Componer()
+	omp = menup() # Menu principal
+	if (omp == 1): # Componer
+		omc = Componer() # Menu de las partes
 		if (1 <= omc <= 4):
-			osm = submenu()
-
-	if (omp == 2):
-		#
+			osm = submenu() # Submenu de las partes
+			if (osm==1): # Cargar archivo
+				archivo = open('archivo.txt','r') # Abre archivo en modo lectura
+			elif (osm==2): # Generar arpegio
+				d
+			elif (osm==3): # Transportar
+				d
+			elif (osm==4): # Escuchar parte
+				s
+			elif (osm==5): # Borrar parte
+				s
+			elif (osm==6): # Volver al menu anterior
+				a
+		elif (omc=5):
+			omp = menup()
+	#if (omp == 2): #Escuchar composicion
+		sp = midi.realtime.StreamPlayer(cancion) #Aqui en "cancion" va el nombre que le pongamos a la composicion
+		sp.play()
 
 	if (omp == 3):
-
 		#posible confirmacion
 		sys.exit()
-
-
-
-
-
