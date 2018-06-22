@@ -27,7 +27,7 @@ def submenu() -> int:
 	return osm
 
 def transp(comp: [note.Note]) -> [note.Note]:
-	a = input("Introduzca el intervalo")
+	a = input("Introduzca el intervalo: ")
 	while True:
 		try:
 			assert(a == "P1" or a == "m2" or a == "M2" or a == "m3" or a == "M3" or a == "P4" or a == "P5" or a =="m6" or a == "M6" or a == "m7" or a == "M7" or a == "P8")
