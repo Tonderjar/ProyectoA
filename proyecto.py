@@ -1,8 +1,10 @@
 import sys
+import os
 from pygame import *
 from music21 import *
 
 def menup() -> int:
+	os.system('clear')
 	print("MENÚ PRINCIPAL")
 	print("1.- Parte 1")
 	print("2.- Parte 2")
@@ -15,6 +17,7 @@ def menup() -> int:
 	return omp
 
 def submenu() -> int:
+	print("")
 	print("SUBMENÚ")
 	print("1.- Cargar archivo")
 	print("2.- Generar arpegio")
@@ -36,20 +39,21 @@ while True:
 			if (osm==1): # Cargar archivo
 				comp[omp - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
 				sp = midi.realtime.StreamPlayer(comp[omp - 1])
+				print("(Reproduciendo)")
 				sp.play()
 			elif (osm==2): # Generar arpegio
-				print("En desarrollo")
+				print("Opción en desarrollo")
 			elif (osm==3): # Transportar
-				print("En desarrollo")
+				print("Opción en desarrollo")
 			elif (osm==4): # Escuchar parte
-				print("En desarrollo")
+				print("Opción en desarrollo")
 			elif (osm==5): # Borrar parte
-				print("En desarrollo")
+				print("Opción en desarrollo")
 			elif (osm==6): # Volver al menú anterior
 				print("Esta opción regresa al menú anterior")
 				break
 	elif (omp == 5):
-		print("En desarrollo")
+		print("Opción en desarrollo")
 		break
 	elif (omp == 6):
 		#posible confirmación
