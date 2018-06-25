@@ -34,7 +34,8 @@ def transp(comp: [note.Note]) -> [note.Note]:
 			break
 		except:
 			print("Intervalo incorrecto")
-	comp[omp-1] = comp[omp-1].transpose(a)
+	aux = stream.Part(comp[omp-1])
+	comp[omp-1] = aux.transpose(a)
 	return comp[omp-1]
 
 #main
