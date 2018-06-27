@@ -41,18 +41,18 @@ while True:
 				print("(Reproduciendo)")
 				sp.play()
 			elif (osm==2): # Generar arpegio
-				print("Opción en desarrollo")
+				print("Opción 2 en desarrollo")
 			elif (osm==3): # Transportar
-				print("Opción en desarrollo")
+				print("Opción 3 en desarrollo")
 			elif (osm==4): # Escuchar parte
-				print("Opción en desarrollo")
+				print("Opción 4 en desarrollo")
 			elif (osm==5): # Borrar parte
-				print("Opción en desarrollo")
+				print("Opción 5 en desarrollo")
 			elif (osm==6): # Volver al menú anterior
 				print("Esta opción regresa al menú anterior")
 				break
 	elif (omp == 5):
-		print("Opción en desarrollo")
+		print("Opción 5 en desarrollo")
 	elif (omp == 6):
 		#posible confirmación
 		sys.exit()
