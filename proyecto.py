@@ -54,7 +54,6 @@ while True:
 				break
 	elif (omp == 5):
 		print("Opción en desarrollo")
-		break
 	elif (omp == 6):
 		#posible confirmación
 		sys.exit()
