@@ -3,6 +3,7 @@ from pygame import *
 from music21 import *
 
 def menup() -> int:
+	print("")
 	print("MENÚ PRINCIPAL")
 	print("1.- Parte 1")
 	print("2.- Parte 2")
