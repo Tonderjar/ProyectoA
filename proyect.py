@@ -27,6 +27,20 @@ def submenu() -> int:
 	return osm
 
 def transp(comp: [note.Note]) -> [note.Note]:
+	print ("")
+	print ("Unísono:       P1")
+	print ("Segunda menor: m2")
+	print ("Segunda mayor: M2")
+	print ("Tercera menor: m3")
+	print ("Tercera mayor: M3")
+	print ("Cuarta justa:  P4")
+	print ("Quinta justa:  P5")
+	print ("Sexta menor:   m6")
+	print ("Sexta mayor:   M6")
+	print ("Séptima menor: m7")
+	print ("Séptima mayor: M7")
+	print ("Octava justa:  P8")
+	print ("")
 	a = input("Introduzca el intervalo: ")
 	while True:
 		try:
