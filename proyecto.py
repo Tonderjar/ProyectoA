@@ -11,9 +11,9 @@ def menup() -> int:
 	print("4.- Parte 4")
 	print("5.- Escuchar toda la composición")
 	print("6.- Salir del programa")
-	omp = int(input("Seleccione una opción: "))
+	opcmenprin = int(input("Seleccione una opción: "))
 	print("") # Salto de línea
-	return omp
+	return opcmenprin
 
 def submenu() -> int:
 	print("")
@@ -24,35 +24,96 @@ def submenu() -> int:
 	print("4.- Escuchar parte")
 	print("5.- Borrar parte")
 	print("6.- Volver al menú anterior")
-	osm = int(input("Seleccione una opción: "))
+	opcsubmen = int(input("Seleccione una opción: "))
 	print("") # Salto de línea
-	return osm
+	return opcsubmen
+
+def transp(comp: [note.Note]) -> [note.Note]:
+	print ("")
+	print ("Unísono:       P1")
+	print ("Segunda menor: m2")
+	print ("Segunda mayor: M2")
+	print ("Tercera menor: m3")
+	print ("Tercera mayor: M3")
+	print ("Cuarta justa:  P4")
+	print ("Quinta justa:  P5")
+	print ("Sexta menor:   m6")
+	print ("Sexta mayor:   M6")
+	print ("Séptima menor: m7")
+	print ("Séptima mayor: M7")
+	print ("Octava justa:  P8")
+	print ("")
+	while True:
+		try:
+			a = input("Introduzca el intervalo: ")
+			assert(a == "P1" or a == "m2" or a == "M2" or a == "m3" or a == "M3" or a == "P4" or a == "P5" or a =="m6" or a == "M6" or a == "m7" or a == "M7" or a == "P8")
+			break
+		except:
+			print("Intervalo incorrecto")
+	aux = stream.Part(comp[opcmenprin-1])
+	comp[opcmenprin-1] = aux.transpose(a)
+	return comp[opcmenprin-1]
+
+def arpegio()-> [note.Note]:
+	print("")
+	basearp=input("Introduzca la nota base del arpegio: ")
+	nota = note.Note(basearp)
+	arp = stream.Part()
+	for i in range(0, 8):
+		arp.append(nota)
+		nota = nota.transpose("m3")
+	comp[opcmenprin - 1] = arp
+	return  comp[opcmenprin - 1]
 
 #main
 comp = ['', '', '', '']
 while True:
-	omp = menup() # Menú principal
-	if (1 <= omp <= 4):
+	opcmenprin = menup() # Menú principal
+	if (1 <= opcmenprin <= 4):
 		while True:
-			osm = submenu() # Submenú de las partes
-			if (osm==1): # Cargar archivo
-				comp[omp - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
-				sp = midi.realtime.StreamPlayer(comp[omp - 1])
+			opcsubmen = submenu() # Submenú de las partes
+			if (opcsubmen==1): # Cargar archivo
+				comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
+				sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
 				print("(Reproduciendo)")
 				sp.play()
-			elif (osm==2): # Generar arpegio
-				print("Opción 2 en desarrollo")
-			elif (osm==3): # Transportar
-				print("Opción 3 en desarrollo")
-			elif (osm==4): # Escuchar parte
-				print("Opción 4 en desarrollo")
-			elif (osm==5): # Borrar parte
-				print("Opción 5 en desarrollo")
-			elif (osm==6): # Volver al menú anterior
+			elif (opcsubmen==2): # Generar arpegio
+				if (comp[opcmenprin-1] == ''):
+					comp[opcmenprin - 1] = arpegio()
+				else:
+					while True:
+						try:
+							opcion = int(input("Escriba 1 Si desea rescribir la parte, 0 si no: "))
+							assert( opcion == 1 or opcion == 0)
+							break
+						except:
+							print("Introduzca una opcion válida")
+							break
+					if opcion == 1:
+						comp[opcmenprin - 1] = arpegio()
+					else:
+						pass
+			elif (opcsubmen==3): # Transportar
+				comp[opcmenprin-1] = transp(comp[opcmenprin-1])
+			elif (opcsubmen==4): # Escuchar parte
+				while True:
+					try:
+						assert(comp[opcmenprin-1] != '')
+						sp = midi.realtime.StreamPlayer(comp[opcmenprin-1])
+						sp.play()
+						break
+					except:
+						print("Debe cargar un archivo en esta parte")
+						break
+			elif (opcsubmen==5): # Borrar parte
+				comp[opcmenprin-1] = ''
+				print("Se ha borrado la parte")
+			elif (opcsubmen==6): # Volver al menú anterior
 				print("Esta opción regresa al menú anterior")
 				break
-	elif (omp == 5):
-		print("Opción 5 en desarrollo")
-	elif (omp == 6):
+	elif (opcmenprin == 5):
+		sp = midi.realtime.StreamPlayer(comp)
+		sp.play()
+	elif (opcmenprin == 6):
 		#posible confirmación
 		sys.exit()

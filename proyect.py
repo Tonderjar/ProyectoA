@@ -3,6 +3,7 @@ from pygame import *
 from music21 import *
 
 def menup() -> int:
+	print("")
 	print("MENÚ PRINCIPAL")
 	print("1.- Parte 1")
 	print("2.- Parte 2")
@@ -10,11 +11,12 @@ def menup() -> int:
 	print("4.- Parte 4")
 	print("5.- Escuchar toda la composición")
 	print("6.- Salir del programa")
-	omp = int(input("Seleccione una opción: "))
+	opcmenprin = int(input("Seleccione una opción: "))
 	print("") # Salto de línea
-	return omp
+	return opcmenprin
 
 def submenu() -> int:
+	print("")
 	print("SUBMENÚ")
 	print("1.- Cargar archivo")
 	print("2.- Generar arpegio")
@@ -22,9 +24,9 @@ def submenu() -> int:
 	print("4.- Escuchar parte")
 	print("5.- Borrar parte")
 	print("6.- Volver al menú anterior")
-	osm = int(input("Seleccione una opción: "))
+	opcsubmen = int(input("Seleccione una opción: "))
 	print("") # Salto de línea
-	return osm
+	return opcsubmen
 
 def transp(comp: [note.Note]) -> [note.Note]:
 	print ("")
@@ -41,43 +43,50 @@ def transp(comp: [note.Note]) -> [note.Note]:
 	print ("Séptima mayor: M7")
 	print ("Octava justa:  P8")
 	print ("")
-	a = input("Introduzca el intervalo: ")
 	while True:
 		try:
+			a = input("Introduzca el intervalo: ")
 			assert(a == "P1" or a == "m2" or a == "M2" or a == "m3" or a == "M3" or a == "P4" or a == "P5" or a =="m6" or a == "M6" or a == "m7" or a == "M7" or a == "P8")
 			break
 		except:
 			print("Intervalo incorrecto")
-	aux = stream.Part(comp[omp-1])
-	comp[omp-1] = aux.transpose(a)
-	return comp[omp-1]
+	aux = stream.Part(comp[opcmenprin-1])
+	comp[opcmenprin-1] = aux.transpose(a)
+	return comp[opcmenprin-1]
 
 #main
 comp = ['', '', '', '']
 while True:
-	omp = menup() # Menú principal
-	if (1 <= omp <= 4):
+	opcmenprin = menup() # Menú principal
+	if (1 <= opcmenprin <= 4):
 		while True:
-			osm = submenu() # Submenú de las partes
-			if (osm==1): # Cargar archivo
-				comp[omp - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
-				sp = midi.realtime.StreamPlayer(comp[omp - 1])
+			opcsubmen = submenu() # Submenú de las partes
+			if (opcsubmen==1): # Cargar archivo
+				comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
+				sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
 				sp.play()
-			elif (osm==2): # Generar arpegio
+			elif (opcsubmen==2): # Generar arpegio
 				print("En desarrollo")
-			elif (osm==3): # Transportar
-				comp[omp-1] = transp(comp[omp-1])
-			elif (osm==4): # Escuchar parte
-				sp = midi.realtime.StreamPlayer(comp[omp-1])
-				sp.play()
-			elif (osm==5): # Borrar parte
-				print("En desarrollo")
-			elif (osm==6): # Volver al menú anterior
+			elif (opcsubmen==3): # Transportar
+				comp[opcmenprin-1] = transp(comp[opcmenprin-1])
+			elif (opcsubmen==4): # Escuchar parte
+				while True:
+					try:
+						assert(comp[opcmenprin-1] != '')
+						sp = midi.realtime.StreamPlayer(comp[opcmenprin-1])
+						sp.play()
+						break
+					except:
+						print("Debe cargar un archivo en esta parte")
+						break
+			elif (opcsubmen==5): # Borrar parte
+				comp[opcmenprin-1] = ''
+			elif (opcsubmen==6): # Volver al menú anterior
 				print("Esta opción regresa al menú anterior")
 				break
-	elif (omp == 5):
-		print("En desarrollo")
-		break
-	elif (omp == 6):
+	elif (opcmenprin == 5):
+		sp = midi.realtime.StreamPlayer(comp)
+		sp.play()
+	elif (opcmenprin == 6):
 		#posible confirmación
 		sys.exit()
