@@ -130,7 +130,7 @@ def arpegio()-> [note.Note]:
 	comp[opcmenprin - 1] = arp
 	return  comp[opcmenprin - 1]
 
-#main
+# INICIO
 comp = ['', '', '', '']
 while True:
 	opcmenprin = menup() # Menú principal
