@@ -77,35 +77,44 @@ def submenu() -> int:
 #
 # Salida: La función tiene como salida un archivo del mismo tipo pero ya transportado el intervalo deseado.
 #
-# Precondición: comp[opcmenprin] != ''
+# Precondición: comp[opcmenprin-1]!=''
 #
-# Postcondición: comp[opcmenprin] != transp(comp[opcmenprin]) or comp[opcmenprin] == transp(comp[opcmenprin])
+# Postcondición: comp[opcmenprin-1] != transp(comp[opcmenprin-1]) or comp[opcmenprin-1] == transp(comp[opcmenprin-1])
 
-def transp(comp: [note.Note]) -> [note.Note]:
-	print ("")
-	print ("Unísono:       P1")
-	print ("Segunda menor: m2")
-	print ("Segunda mayor: M2")
-	print ("Tercera menor: m3")
-	print ("Tercera mayor: M3")
-	print ("Cuarta justa:  P4")
-	print ("Quinta justa:  P5")
-	print ("Sexta menor:   m6")
-	print ("Sexta mayor:   M6")
-	print ("Séptima menor: m7")
-	print ("Séptima mayor: M7")
-	print ("Octava justa:  P8")
-	print ("")
+def transp() -> [note.Note]:
 	while True:
-		try:
-			intervalo = input("Introduzca el intervalo: ")
-			assert(intervalo == "P1" or intervalo == "m2" or intervalo == "M2" or intervalo == "m3" or intervalo == "M3" or intervalo == "P4" or intervalo == "P5" or intervalo =="m6" or intervalo == "M6" or intervalo == "m7" or intervalo == "M7" or intervalo == "P8")
+		try:	
+			assert(comp[opcmenprin-1]!='')
+			print ("")
+			print ("Unísono:       P1")
+			print ("Segunda menor: m2")
+			print ("Segunda mayor: M2")
+			print ("Tercera menor: m3")
+			print ("Tercera mayor: M3")
+			print ("Cuarta justa:  P4")
+			print ("Quinta justa:  P5")
+			print ("Sexta menor:   m6")
+			print ("Sexta mayor:   M6")
+			print ("Séptima menor: m7")
+			print ("Séptima mayor: M7")
+			print ("Octava justa:  P8")
+			print ("")
+			while True:
+				try:
+					intervalo = input("Introduzca el intervalo: ")
+					assert(intervalo == 'P1' or intervalo == 'm2' or intervalo == 'M2' or intervalo == 'm3' or intervalo == 'M3' or intervalo == 'P4' or intervalo == 'P5' or intervalo =='m6' or intervalo == 'M6' or intervalo == 'm7' or intervalo == 'M7' or intervalo == 'P8')
+					break
+				except:
+					print("Intervalo incorrecto")
+			auxiliar = comp[opcmenprin-1]
+			comp[opcmenprin-1] = auxiliar.transpose(intervalo)
+			print(comp)
+			print(auxiliar)
+			return comp[opcmenprin-1]
 			break
 		except:
-			print("Intervalo incorrecto")
-	auxiliar = stream.Part(comp[opcmenprin-1])
-	comp[opcmenprin-1] = auxiliar.transpose(intervalo)
-	return comp[opcmenprin-1]
+			print("La parte está vacía")
+			break
 
 # La función arp permite generar el arpegiode 8 elementos de una nota tomada como base,en este caso llamada basearp,la cual será tomada
 # como parámetro de entrada y será proporcionada por el usuario luego de hacer la llamada a la función.
@@ -128,6 +137,7 @@ def arpegio()-> [note.Note]:
 		arp.append(nota)
 		nota = nota.transpose("m3")
 	comp[opcmenprin - 1] = arp
+	print(comp)
 	return  comp[opcmenprin - 1]
 
 # INICIO
@@ -162,7 +172,7 @@ while True:
 						pass
 			elif (opcsubmen==2): # Generar arpegio
 				if (comp[opcmenprin-1] == ''):
-					comp[opcmenprin - 1] = arpegio()
+					comp[opcmenprin-1] = arpegio()
 				else:
 					while True:
 						try:
@@ -174,11 +184,11 @@ while True:
 							print("Introduzca una opción válida")
 							break
 					if opcion == 1:
-						comp[opcmenprin - 1] = arpegio()
+						comp[opcmenprin-1] = arpegio()
 					else:
 						pass
 			elif (opcsubmen==3): # Transportar
-				comp[opcmenprin-1] = transp(comp[opcmenprin-1])
+				comp[opcmenprin-1] = transp()
 			elif (opcsubmen==4): # Escuchar parte
 				while True:
 					try:
