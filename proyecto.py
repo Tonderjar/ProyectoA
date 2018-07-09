@@ -99,7 +99,7 @@ def transp(comp: [note.Note]) -> [note.Note]:
 	while True:
 		try:
 			intervalo = input("Introduzca el intervalo: ")
-			assert(intervalo == "P1" or intervalo == "m2" or intervalo = "M2" or intervalo == "m3" or intervalo == "M3" or intervalo == "P4" or intervalo == "P5" or intervalo =="m6" or intervalo == "M6" or intervalo == "m7" or intervalo == "M7" or intervalo == "P8")
+			assert(intervalo == "P1" or intervalo == "m2" or intervalo == "M2" or intervalo == "m3" or intervalo == "M3" or intervalo == "P4" or intervalo == "P5" or intervalo =="m6" or intervalo == "M6" or intervalo == "m7" or intervalo == "M7" or intervalo == "P8")
 			break
 		except:
 			print("Intervalo incorrecto")
@@ -138,11 +138,28 @@ while True:
 		while True:
 			opcsubmen = submenu() # Submenú de las partes
 			if (opcsubmen==1): # Cargar archivo
-				comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
-				sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
-				print("(Reproduciendo)")
-				print(type(comp[opcmenprin - 1]))
-				sp.play()
+				if comp[opcmenprin-1] == '':	
+					comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
+					sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
+					print("(Reproduciendo)")
+					sp.play()
+				else:
+					while True:
+						try:
+							opcion = 0
+							opcion = int(input("Escriba 1 si desea sobrescribir la parte, 0 si no: "))
+							assert( opcion == 1 or opcion == 0)
+							break
+						except:
+							print("Introduzca una opción válida")
+							break
+					if opcion == 1:
+						comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
+						sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
+						print("(Reproduciendo)")
+						sp.play()
+					else:
+						pass
 			elif (opcsubmen==2): # Generar arpegio
 				if (comp[opcmenprin-1] == ''):
 					comp[opcmenprin - 1] = arpegio()
@@ -150,7 +167,7 @@ while True:
 					while True:
 						try:
 							opcion = 0
-							opcion = int(input("Escriba 1 si desea rescribir la parte, 0 si no: "))
+							opcion = int(input("Escriba 1 si desea sobrescribir la parte, 0 si no: "))
 							assert( opcion == 1 or opcion == 0)
 							break
 						except:
