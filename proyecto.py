@@ -72,8 +72,7 @@ def submenu() -> int:
 # elige una opción, se procederá a transportar el elemento deseado el intervalo especificado por el usuario mediante la librería
 # music21 
 #
-# Entrada: La función tiene como entrada la casilla correspondiente a la parte que se esta modificando del arreglo comp, el
-# cual contiene todas las partes de la composición.
+# Entrada: La función no posee elementos de entrada.
 #
 # Salida: La función tiene como salida un archivo del mismo tipo pero ya transportado el intervalo deseado.
 #
@@ -137,22 +136,31 @@ def arpegio()-> [note.Note]:
 		arp.append(nota)
 		nota = nota.transpose("m3")
 	comp[opcmenprin - 1] = arp
-	print(comp)
 	return  comp[opcmenprin - 1]
+
+def reproducir() -> [note.Note]:
+	composición = stream.Score()
+	parte1 = stream.Part(comp[0])
+	parte2 = stream.Part(comp[1])
+	parte3 = stream.Part(comp[2])
+	parte4 = stream.Part(comp[3])
+	composición.insert(0, parte1)
+	composición.insert(0, parte2)
+	composición.insert(0, parte3)
+	composición.insert(0, parte4)
+	canción = midi.realtime.StreamPlayer(composición)
+	canción.play()
 
 # INICIO
 comp = ['', '', '', '']
 while True:
-	opcmenprin = menup() # Menú principal
-	if (1 <= opcmenprin <= 4):
+	opcmenprin = menup() # Menú principal#########################################
+	if (1 <= opcmenprin <= 4): # Opciones de las partes ##########################
 		while True:
-			opcsubmen = submenu() # Submenú de las partes
-			if (opcsubmen==1): # Cargar archivo
+			opcsubmen = submenu() # Submenú de las partes#########################
+			if (opcsubmen==1): # Cargar archivo###################################
 				if comp[opcmenprin-1] == '':	
 					comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
-					sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
-					print("(Reproduciendo)")
-					sp.play()
 				else:
 					while True:
 						try:
@@ -165,12 +173,9 @@ while True:
 							break
 					if opcion == 1:
 						comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
-						sp = midi.realtime.StreamPlayer(comp[opcmenprin - 1])
-						print("(Reproduciendo)")
-						sp.play()
 					else:
 						pass
-			elif (opcsubmen==2): # Generar arpegio
+			elif (opcsubmen==2): # Generar arpegio#################################
 				if (comp[opcmenprin-1] == ''):
 					comp[opcmenprin-1] = arpegio()
 				else:
@@ -187,9 +192,9 @@ while True:
 						comp[opcmenprin-1] = arpegio()
 					else:
 						pass
-			elif (opcsubmen==3): # Transportar
+			elif (opcsubmen==3): # Transportar######################################
 				comp[opcmenprin-1] = transp()
-			elif (opcsubmen==4): # Escuchar parte
+			elif (opcsubmen==4): # Escuchar parte###################################
 				while True:
 					try:
 						assert(comp[opcmenprin-1] != '')
@@ -199,15 +204,14 @@ while True:
 					except:
 						print("Debe cargar un archivo en esta parte")
 						break
-			elif (opcsubmen==5): # Borrar parte
+			elif (opcsubmen==5): # Borrar parte######################################
 				comp[opcmenprin-1] = ''
 				print("Se ha borrado la parte")
-			elif (opcsubmen==6): # Volver al menú anterior
-				print("Esta opción regresa al menú anterior")
+			elif (opcsubmen==6): # Volver al menú anterior###########################
 				break
-	elif (opcmenprin == 5):
-		print("En desarrollo")
-	elif (opcmenprin == 6):
+	elif (opcmenprin == 5): # Reproducir toda la composición#########################
+		reproducir()
+	elif (opcmenprin == 6): # Salir del programa#####################################
 		while True:
 			try:
 				opcion = 0
