@@ -107,8 +107,6 @@ def transp() -> [note.Note]:
 					print("Intervalo incorrecto")
 			auxiliar = comp[opcmenprin-1]
 			comp[opcmenprin-1] = auxiliar.transpose(intervalo)
-			print(comp)
-			print(auxiliar)
 			return comp[opcmenprin-1]
 			break
 		except:
