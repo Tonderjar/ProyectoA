@@ -240,6 +240,7 @@ while True:
 					try:
 						assert(comp[opcmenprin-1] != '')
 						sp = midi.realtime.StreamPlayer(comp[opcmenprin-1])
+						print("Reproduciendo...")
 						sp.play()
 						break
 					except:
