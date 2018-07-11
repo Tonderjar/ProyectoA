@@ -130,6 +130,7 @@ def transp() -> [note.Note]:
 					print("Intervalo incorrecto")
 			auxiliar = comp[opcmenprin-1]
 			comp[opcmenprin-1] = auxiliar.transpose(intervalo)
+			print("Se ha transportado correctamente")
 			return comp[opcmenprin-1]
 			break
 		except:
@@ -202,6 +203,7 @@ while True:
 			if (opcsubmen==1): # Cargar archivo ###################################
 				if comp[opcmenprin-1] == '':	
 					comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
+					print("Se ha cargado el archivo correctamente")
 				else:
 					while True:
 						try:
