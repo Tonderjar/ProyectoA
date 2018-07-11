@@ -2,7 +2,18 @@ import sys
 from pygame import *
 from music21 import *
 
-# La función menup imprime las opciones que posee el usuario para utilizar el programa en el menú principal,
+# Autores:
+#	Diego Lezama
+#	Andrea Reyes
+#
+# Descripción del programa:
+#
+#	El siguiente es un algoritmo que permite crear una composición de 4 partes que podrán ser reproducidos de manera simultánea.
+#	cada parte puede consistir de un archivo cargado de tipo tinynotation o un arpegio generado en una de las opciones del 
+#	programa, teniendo la opción también de transportar cada parte cierto intervalo que deberá ser introducido por el usuario una vez
+#	que elija la opción de transportar.
+#
+# Descripción: La función menup imprime las opciones que posee el usuario para utilizar el programa en el menú principal,
 # una vez que el usuario elige una opción, el valor será guardado en una variable (opcmenprin) especificada en el programa
 # al momento de hacer la llamada a la función.
 #
@@ -35,7 +46,7 @@ def menup() -> int:
 	print("") # Salto de línea
 	return opcmenprin
 
-# La función submenu imprime las opciones que posee el usuario para utilizar el programa en el submenú,
+# Descripción: La función submenu imprime las opciones que posee el usuario para utilizar el programa en el submenú,
 # una vez que el usuario elige una opción, el valor será guardado en una variable (opcsubmen) especificada en el programa
 # al momento de hacer la llamada a la función.
 #
@@ -68,7 +79,7 @@ def submenu() -> int:
 	print("") # Salto de línea
 	return opcsubmen
 
-# La función transp imprime las opciones que posee el usuario para transportar el elemento deseado, una vez que el usuario
+# Descripción: La función transp imprime las opciones que posee el usuario para transportar el elemento deseado, una vez que el usuario
 # elige una opción, se procederá a transportar el elemento deseado el intervalo especificado por el usuario mediante la librería
 # music21 
 #
@@ -113,7 +124,7 @@ def transp() -> [note.Note]:
 			print("La parte está vacía")
 			break
 
-# La función arp permite generar el arpegio de 8 elementos de una nota tomada como base,en este caso llamada basearp,
+# Descripción: La función arp permite generar el arpegio de 8 elementos de una nota tomada como base,en este caso llamada basearp,
 # la cual será tomada como parámetro de entrada y será proporcionada por el usuario luego de hacer la llamada a la función.
 #
 # Entrada: La función no posee argumentos de entrada.
@@ -136,7 +147,7 @@ def arpegio()-> [note.Note]:
 	comp[opcmenprin - 1] = arp
 	return  comp[opcmenprin - 1]
 
-# El procedimiento reproducir toma los archivos guardados en cada parte y los introduce en un stream.Score, para luego ser
+# Descripción: El procedimiento reproducir toma los archivos guardados en cada parte y los introduce en un stream.Score, para luego ser
 # reproducidos simultáneamente como una misma parte.
 #
 # Entrada: La función no posee argumentos de entrada.
