@@ -9,9 +9,13 @@ from music21 import *
 # Descripción del programa:
 #
 #	El siguiente es un algoritmo que permite crear una composición de 4 partes que podrán ser reproducidos de manera simultánea.
-#	cada parte puede consistir de un archivo cargado de tipo tinynotation o un arpegio generado en una de las opciones del 
+#	Cada parte consta de un archivo cargado de tipo tinynotation o un arpegio generado en una de las opciones del 
 #	programa, teniendo la opción también de transportar cada parte cierto intervalo que deberá ser introducido por el usuario una vez
 #	que elija la opción de transportar.
+
+
+
+# FUNCIÓN menup
 #
 # Descripción: La función menup imprime las opciones que posee el usuario para utilizar el programa en el menú principal,
 # una vez que el usuario elige una opción, el valor será guardado en una variable (opcmenprin) especificada en el programa
@@ -46,6 +50,10 @@ def menup() -> int:
 	print("") # Salto de línea
 	return opcmenprin
 
+
+
+# FUNCIÓN submenu
+#
 # Descripción: La función submenu imprime las opciones que posee el usuario para utilizar el programa en el submenú,
 # una vez que el usuario elige una opción, el valor será guardado en una variable (opcsubmen) especificada en el programa
 # al momento de hacer la llamada a la función.
@@ -79,6 +87,10 @@ def submenu() -> int:
 	print("") # Salto de línea
 	return opcsubmen
 
+
+
+# FUNCIÓN transp
+#
 # Descripción: La función transp imprime las opciones que posee el usuario para transportar el elemento deseado, una vez que el usuario
 # elige una opción, se procederá a transportar el elemento deseado el intervalo especificado por el usuario mediante la librería
 # music21 
@@ -124,7 +136,11 @@ def transp() -> [note.Note]:
 			print("La parte está vacía")
 			break
 
-# Descripción: La función arp permite generar el arpegio de 8 elementos de una nota tomada como base,en este caso llamada basearp,
+
+
+# FUNCIÓN arpegio
+#
+# Descripción: La función arpegio permite generar el arpegio de 8 elementos de una nota tomada como base,en este caso llamada basearp,
 # la cual será tomada como parámetro de entrada y será proporcionada por el usuario luego de hacer la llamada a la función.
 #
 # Entrada: La función no posee argumentos de entrada.
@@ -147,8 +163,12 @@ def arpegio()-> [note.Note]:
 	comp[opcmenprin - 1] = arp
 	return  comp[opcmenprin - 1]
 
-# Descripción: El procedimiento reproducir toma los archivos guardados en cada parte y los introduce en un stream.Score, para luego ser
-# reproducidos simultáneamente como una misma parte.
+
+
+# PROCEDIMIENTO reproducir
+#
+# Descripción: El procedimiento reproducir toma los archivos guardados en cada parte y los introduce en un stream.Score, 
+# para luego ser reproducidos simultáneamente como una misma parte.
 #
 # Entrada: La función no posee argumentos de entrada.
 #
@@ -171,15 +191,15 @@ def reproducir() -> [note.Note]:
 	canción = midi.realtime.StreamPlayer(composición)
 	canción.play()
 
-# INICIO
+# INICIO DEL PROGRAMA
 comp = ['', '', '', '']
 while True:
 	
-	opcmenprin = menup() # Menú principal#########################################
-	if (1 <= opcmenprin <= 4): # Opciones de las partes ##########################
+	opcmenprin = menup() # Menú principal #########################################
+	if (1 <= opcmenprin <= 4): # Opciones de las partes ###########################
 		while True:
-			opcsubmen = submenu() # Submenú de las partes#########################
-			if (opcsubmen==1): # Cargar archivo###################################
+			opcsubmen = submenu() # Submenú de las partes #########################
+			if (opcsubmen==1): # Cargar archivo ###################################
 				if comp[opcmenprin-1] == '':	
 					comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
 				else:
@@ -196,7 +216,7 @@ while True:
 						comp[opcmenprin - 1] = converter.parse(input("Introduzca la ruta de su archivo: "))
 					else:
 						pass
-			elif (opcsubmen==2): # Generar arpegio#################################
+			elif (opcsubmen==2): # Generar arpegio ################################
 				if (comp[opcmenprin-1] == ''):
 					comp[opcmenprin-1] = arpegio()
 				else:
@@ -213,9 +233,9 @@ while True:
 						comp[opcmenprin-1] = arpegio()
 					else:
 						pass
-			elif (opcsubmen==3): # Transportar######################################
+			elif (opcsubmen==3): # Transportar #####################################
 				comp[opcmenprin-1] = transp()
-			elif (opcsubmen==4): # Escuchar parte###################################
+			elif (opcsubmen==4): # Escuchar parte ##################################
 				while True:
 					try:
 						assert(comp[opcmenprin-1] != '')
@@ -225,14 +245,14 @@ while True:
 					except:
 						print("Debe cargar un archivo en esta parte")
 						break
-			elif (opcsubmen==5): # Borrar parte######################################
+			elif (opcsubmen==5): # Borrar parte ####################################
 				comp[opcmenprin-1] = ''
 				print("Se ha borrado la parte")
-			elif (opcsubmen==6): # Volver al menú anterior###########################
+			elif (opcsubmen==6): # Volver al menú anterior #########################
 				break
-	elif (opcmenprin == 5): # Reproducir toda la composición#########################
+	elif (opcmenprin == 5): # Reproducir toda la composición #######################
 		reproducir()
-	elif (opcmenprin == 6): # Salir del programa#####################################
+	elif (opcmenprin == 6): # Salir del programa ###################################
 		while True:
 			try:
 				opcion = 0
