@@ -9,7 +9,7 @@ from music21 import *
 # Entrada: No posee argumentos de entrada.
 #
 # Salida: el  valor obtenido al momento de finalizar los procesos de la función se llama opcmenprin, el cual refleja la opción
-# elegida  por el usuario
+# elegida por el usuario
 #
 # Precondición: True
 #
@@ -42,7 +42,7 @@ def menup() -> int:
 # Entrada: No posee argumentos de entrada.
 #
 # Salida: el  valor obtenido al momento de finalizar los procesos de la función se llama opcsubmen, el cual refleja la opción
-# elegida  por el usuario
+# elegida por el usuario
 #
 # Precondición: True
 #
@@ -113,8 +113,8 @@ def transp() -> [note.Note]:
 			print("La parte está vacía")
 			break
 
-# La función arp permite generar el arpegiode 8 elementos de una nota tomada como base,en este caso llamada basearp,la cual será tomada
-# como parámetro de entrada y será proporcionada por el usuario luego de hacer la llamada a la función.
+# La función arp permite generar el arpegio de 8 elementos de una nota tomada como base,en este caso llamada basearp,
+# la cual será tomada como parámetro de entrada y será proporcionada por el usuario luego de hacer la llamada a la función.
 #
 # Entrada: La función no posee argumentos de entrada.
 #
