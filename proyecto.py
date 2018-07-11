@@ -1,6 +1,7 @@
 import sys
 from pygame import *
 from music21 import *
+from tkinter import *
 
 # La función menup imprime las opciones que posee el usuario para utilizar el programa en el menú principal,
 # una vez que el usuario elige una opción, el valor será guardado en una variable (opcmenprin) especificada en el programa
@@ -151,7 +152,9 @@ def reproducir() -> [note.Note]:
 
 # INICIO
 comp = ['', '', '', '']
+#root = Tk()
 while True:
+	
 	opcmenprin = menup() # Menú principal#########################################
 	if (1 <= opcmenprin <= 4): # Opciones de las partes ##########################
 		while True:
