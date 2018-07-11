@@ -155,6 +155,7 @@ def transp() -> [note.Note]:
 
 def arpegio()-> [note.Note]:
 	print("")
+	print("Debe introducir una letra mayúscula de la A a la G seguida (sin espacios) de un número del 1 al 8 (preferiblemente)")
 	basearp=input("Introduzca la nota base del arpegio: ")
 	nota = note.Note(basearp)
 	arp = stream.Part()
