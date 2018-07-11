@@ -137,6 +137,17 @@ def arpegio()-> [note.Note]:
 	comp[opcmenprin - 1] = arp
 	return  comp[opcmenprin - 1]
 
+# El procedimiento reproducir toma los archivos guardados en cada parte y los introduce en un stream.Score, para luego ser
+# reproducidos simultáneamente como una misma parte.
+#
+# Entrada: La función no posee argumentos de entrada.
+#
+# Salida: El procedimiento no posee elementos de salida.
+#
+# Precondición: True
+#
+# Postcondición: True
+
 def reproducir() -> [note.Note]:
 	composición = stream.Score()
 	parte1 = stream.Part(comp[0])
