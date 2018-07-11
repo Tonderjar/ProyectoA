@@ -123,7 +123,7 @@ def transp() -> [note.Note]:
 #
 # Precondición: True
 #
-# Postcondición: comp[opcmenprin-1] == arp
+# Postcondición: comp[opcmenprin-1] == arpegio()
 
 def arpegio()-> [note.Note]:
 	print("")
@@ -145,7 +145,7 @@ def arpegio()-> [note.Note]:
 #
 # Precondición: True
 #
-# Postcondición: True
+# Postcondición: canción.play()
 
 def reproducir() -> [note.Note]:
 	composición = stream.Score()
