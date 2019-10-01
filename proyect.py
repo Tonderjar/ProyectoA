@@ -2,6 +2,7 @@ import sys
 from pygame import *
 from music21 import *
 
+# print de Menu Principal
 def menup() -> int:
 	print("")
 	print("MENÚ PRINCIPAL")
@@ -15,6 +16,7 @@ def menup() -> int:
 	print("") # Salto de línea
 	return opcmenprin
 
+# print del Submenu, hace print cuando selecciona alguna de las 4 partes
 def submenu() -> int:
 	print("")
 	print("SUBMENÚ")
@@ -28,6 +30,7 @@ def submenu() -> int:
 	print("") # Salto de línea
 	return opcsubmen
 
+# Menu de Transportar 
 def transp(comp: [note.Note]) -> [note.Note]:
 	print ("")
 	print ("Unísono:       P1")
@@ -54,7 +57,7 @@ def transp(comp: [note.Note]) -> [note.Note]:
 	comp[opcmenprin-1] = aux.transpose(a)
 	return comp[opcmenprin-1]
 
-#main
+# Main
 comp = ['', '', '', '']
 while True:
 	opcmenprin = menup() # Menú principal
